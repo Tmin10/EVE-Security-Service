@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class UserInterfaceApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -57,7 +58,7 @@ export class UserInterfaceApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -77,7 +78,7 @@ export class UserInterfaceApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -97,7 +98,7 @@ export class UserInterfaceApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -117,7 +118,7 @@ export class UserInterfaceApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -137,7 +138,7 @@ export class UserInterfaceApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -155,7 +156,7 @@ export class UserInterfaceApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUiAutopilotWaypointWithHttpInfo(addToBeginning: boolean, clearOtherWaypoints: boolean, destinationId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/ui/autopilot/waypoint/`;
+        const path = this.basePath + '/ui/autopilot/waypoint/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -172,54 +173,32 @@ export class UserInterfaceApi {
             throw new Error('Required parameter destinationId was null or undefined when calling postUiAutopilotWaypoint.');
         }
         if (addToBeginning !== undefined) {
-            if(addToBeginning instanceof Date) {
-                queryParameters.set('add_to_beginning', <any>addToBeginning.d.toISOString());
-            } else {
-                queryParameters.set('add_to_beginning', <any>addToBeginning);
-            }
+            queryParameters.set('add_to_beginning', <any>addToBeginning);
         }
 
         if (clearOtherWaypoints !== undefined) {
-            if(clearOtherWaypoints instanceof Date) {
-                queryParameters.set('clear_other_waypoints', <any>clearOtherWaypoints.d.toISOString());
-            } else {
-                queryParameters.set('clear_other_waypoints', <any>clearOtherWaypoints);
-            }
+            queryParameters.set('clear_other_waypoints', <any>clearOtherWaypoints);
         }
 
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (destinationId !== undefined) {
-            if(destinationId instanceof Date) {
-                queryParameters.set('destination_id', <any>destinationId.d.toISOString());
-            } else {
-                queryParameters.set('destination_id', <any>destinationId);
-            }
+            queryParameters.set('destination_id', <any>destinationId);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -242,9 +221,9 @@ export class UserInterfaceApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -263,7 +242,7 @@ export class UserInterfaceApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUiOpenwindowContractWithHttpInfo(contractId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/ui/openwindow/contract/`;
+        const path = this.basePath + '/ui/openwindow/contract/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -272,38 +251,24 @@ export class UserInterfaceApi {
             throw new Error('Required parameter contractId was null or undefined when calling postUiOpenwindowContract.');
         }
         if (contractId !== undefined) {
-            if(contractId instanceof Date) {
-                queryParameters.set('contract_id', <any>contractId.d.toISOString());
-            } else {
-                queryParameters.set('contract_id', <any>contractId);
-            }
+            queryParameters.set('contract_id', <any>contractId);
         }
 
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -326,9 +291,9 @@ export class UserInterfaceApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -347,7 +312,7 @@ export class UserInterfaceApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUiOpenwindowInformationWithHttpInfo(targetId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/ui/openwindow/information/`;
+        const path = this.basePath + '/ui/openwindow/information/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -356,38 +321,24 @@ export class UserInterfaceApi {
             throw new Error('Required parameter targetId was null or undefined when calling postUiOpenwindowInformation.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (targetId !== undefined) {
-            if(targetId instanceof Date) {
-                queryParameters.set('target_id', <any>targetId.d.toISOString());
-            } else {
-                queryParameters.set('target_id', <any>targetId);
-            }
+            queryParameters.set('target_id', <any>targetId);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -410,9 +361,9 @@ export class UserInterfaceApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -431,7 +382,7 @@ export class UserInterfaceApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUiOpenwindowMarketdetailsWithHttpInfo(typeId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/ui/openwindow/marketdetails/`;
+        const path = this.basePath + '/ui/openwindow/marketdetails/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -440,38 +391,24 @@ export class UserInterfaceApi {
             throw new Error('Required parameter typeId was null or undefined when calling postUiOpenwindowMarketdetails.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (typeId !== undefined) {
-            if(typeId instanceof Date) {
-                queryParameters.set('type_id', <any>typeId.d.toISOString());
-            } else {
-                queryParameters.set('type_id', <any>typeId);
-            }
+            queryParameters.set('type_id', <any>typeId);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -494,9 +431,9 @@ export class UserInterfaceApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -515,7 +452,7 @@ export class UserInterfaceApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUiOpenwindowNewmailWithHttpInfo(newMail: models.PostUiOpenwindowNewmailNewMail, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/ui/openwindow/newmail/`;
+        const path = this.basePath + '/ui/openwindow/newmail/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -524,30 +461,20 @@ export class UserInterfaceApi {
             throw new Error('Required parameter newMail was null or undefined when calling postUiOpenwindowNewmail.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -573,9 +500,9 @@ export class UserInterfaceApi {
             method: RequestMethod.Post,
             headers: headers,
             body: newMail == null ? '' : JSON.stringify(newMail), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

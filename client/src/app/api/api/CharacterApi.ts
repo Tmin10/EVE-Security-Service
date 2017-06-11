@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class CharacterApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -54,7 +55,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -74,7 +75,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -94,7 +95,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -114,7 +115,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -133,7 +134,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -153,7 +154,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -172,7 +173,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -192,7 +193,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -212,7 +213,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -231,7 +232,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -250,7 +251,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -271,7 +272,7 @@ export class CharacterApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -286,7 +287,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdWithHttpInfo(characterId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/`;
+        const path = this.basePath + '/characters/${character_id}/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -295,22 +297,16 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -324,9 +320,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -345,7 +341,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdAgentsResearchWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/agents_research/`;
+        const path = this.basePath + '/characters/${character_id}/agents_research/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -354,30 +351,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdAgentsResearch.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -400,9 +387,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -421,7 +408,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdBlueprintsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/blueprints/`;
+        const path = this.basePath + '/characters/${character_id}/blueprints/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -430,30 +418,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdBlueprints.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -476,9 +454,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -497,7 +475,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdChatChannelsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/chat_channels/`;
+        const path = this.basePath + '/characters/${character_id}/chat_channels/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -506,30 +485,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdChatChannels.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -552,9 +521,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -572,7 +541,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdCorporationhistoryWithHttpInfo(characterId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/corporationhistory/`;
+        const path = this.basePath + '/characters/${character_id}/corporationhistory/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -581,22 +551,16 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdCorporationhistory.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -610,9 +574,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -631,7 +595,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdMedalsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/medals/`;
+        const path = this.basePath + '/characters/${character_id}/medals/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -640,30 +605,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdMedals.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -686,9 +641,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -706,7 +661,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdPortraitWithHttpInfo(characterId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/portrait/`;
+        const path = this.basePath + '/characters/${character_id}/portrait/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -715,22 +671,16 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdPortrait.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -744,9 +694,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -765,7 +715,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdRolesWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/roles/`;
+        const path = this.basePath + '/characters/${character_id}/roles/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -774,30 +725,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdRoles.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -820,9 +761,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -841,7 +782,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdStandingsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/standings/`;
+        const path = this.basePath + '/characters/${character_id}/standings/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -850,30 +792,20 @@ export class CharacterApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdStandings.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -896,9 +828,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -916,7 +848,7 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersNamesWithHttpInfo(characterIds: Array<number>, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/names/`;
+        const path = this.basePath + '/characters/names/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -929,22 +861,16 @@ export class CharacterApi {
         }
 
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -958,9 +884,9 @@ export class CharacterApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -978,7 +904,7 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postCharactersAffiliationWithHttpInfo(characters: Array<number>, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/affiliation/`;
+        const path = this.basePath + '/characters/affiliation/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -987,22 +913,16 @@ export class CharacterApi {
             throw new Error('Required parameter characters was null or undefined when calling postCharactersAffiliation.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1019,9 +939,9 @@ export class CharacterApi {
             method: RequestMethod.Post,
             headers: headers,
             body: characters == null ? '' : JSON.stringify(characters), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1041,7 +961,8 @@ export class CharacterApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postCharactersCharacterIdCspaWithHttpInfo(characterId: number, characters: models.PostCharactersCharacterIdCspaCharacters, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/cspa/`;
+        const path = this.basePath + '/characters/${character_id}/cspa/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1054,30 +975,20 @@ export class CharacterApi {
             throw new Error('Required parameter characters was null or undefined when calling postCharactersCharacterIdCspa.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1103,9 +1014,9 @@ export class CharacterApi {
             method: RequestMethod.Post,
             headers: headers,
             body: characters == null ? '' : JSON.stringify(characters), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

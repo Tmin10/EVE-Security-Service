@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class MailApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -56,7 +57,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -77,7 +78,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -99,7 +100,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -119,7 +120,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -139,7 +140,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -160,7 +161,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -181,7 +182,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -202,7 +203,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -224,7 +225,7 @@ export class MailApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -241,7 +242,9 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteCharactersCharacterIdMailLabelsLabelIdWithHttpInfo(characterId: number, labelId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/labels/${label_id}/`;
+        const path = this.basePath + '/characters/${character_id}/mail/labels/${label_id}/'
+                    .replace('${' + 'character_id' + '}', String(characterId))
+                    .replace('${' + 'label_id' + '}', String(labelId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -254,30 +257,20 @@ export class MailApi {
             throw new Error('Required parameter labelId was null or undefined when calling deleteCharactersCharacterIdMailLabelsLabelId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -300,9 +293,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Delete,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -322,7 +315,9 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteCharactersCharacterIdMailMailIdWithHttpInfo(characterId: number, mailId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/${mail_id}/`;
+        const path = this.basePath + '/characters/${character_id}/mail/${mail_id}/'
+                    .replace('${' + 'character_id' + '}', String(characterId))
+                    .replace('${' + 'mail_id' + '}', String(mailId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -335,30 +330,20 @@ export class MailApi {
             throw new Error('Required parameter mailId was null or undefined when calling deleteCharactersCharacterIdMailMailId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -381,9 +366,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Delete,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -404,7 +389,8 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdMailWithHttpInfo(characterId: number, datasource?: string, labels?: Array<number>, lastMailId?: number, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/`;
+        const path = this.basePath + '/characters/${character_id}/mail/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -413,11 +399,7 @@ export class MailApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdMail.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (labels) {
@@ -425,30 +407,20 @@ export class MailApi {
         }
 
         if (lastMailId !== undefined) {
-            if(lastMailId instanceof Date) {
-                queryParameters.set('last_mail_id', <any>lastMailId.d.toISOString());
-            } else {
-                queryParameters.set('last_mail_id', <any>lastMailId);
-            }
+            queryParameters.set('last_mail_id', <any>lastMailId);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -471,9 +443,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -492,7 +464,8 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdMailLabelsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/labels/`;
+        const path = this.basePath + '/characters/${character_id}/mail/labels/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -501,30 +474,20 @@ export class MailApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdMailLabels.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -547,9 +510,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -568,7 +531,8 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdMailListsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/lists/`;
+        const path = this.basePath + '/characters/${character_id}/mail/lists/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -577,30 +541,20 @@ export class MailApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdMailLists.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -623,9 +577,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -645,7 +599,9 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdMailMailIdWithHttpInfo(characterId: number, mailId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/${mail_id}/`;
+        const path = this.basePath + '/characters/${character_id}/mail/${mail_id}/'
+                    .replace('${' + 'character_id' + '}', String(characterId))
+                    .replace('${' + 'mail_id' + '}', String(mailId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -658,30 +614,20 @@ export class MailApi {
             throw new Error('Required parameter mailId was null or undefined when calling getCharactersCharacterIdMailMailId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -704,9 +650,9 @@ export class MailApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -726,7 +672,8 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postCharactersCharacterIdMailWithHttpInfo(characterId: number, mail: models.PostCharactersCharacterIdMailMail, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/`;
+        const path = this.basePath + '/characters/${character_id}/mail/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -739,30 +686,20 @@ export class MailApi {
             throw new Error('Required parameter mail was null or undefined when calling postCharactersCharacterIdMail.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -788,9 +725,9 @@ export class MailApi {
             method: RequestMethod.Post,
             headers: headers,
             body: mail == null ? '' : JSON.stringify(mail), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -810,7 +747,8 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postCharactersCharacterIdMailLabelsWithHttpInfo(characterId: number, datasource?: string, label?: models.PostCharactersCharacterIdMailLabelsLabel, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/labels/`;
+        const path = this.basePath + '/characters/${character_id}/mail/labels/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -819,30 +757,20 @@ export class MailApi {
             throw new Error('Required parameter characterId was null or undefined when calling postCharactersCharacterIdMailLabels.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -868,9 +796,9 @@ export class MailApi {
             method: RequestMethod.Post,
             headers: headers,
             body: label == null ? '' : JSON.stringify(label), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -891,7 +819,9 @@ export class MailApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putCharactersCharacterIdMailMailIdWithHttpInfo(characterId: number, contents: models.PutCharactersCharacterIdMailMailIdContents, mailId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/mail/${mail_id}/`;
+        const path = this.basePath + '/characters/${character_id}/mail/${mail_id}/'
+                    .replace('${' + 'character_id' + '}', String(characterId))
+                    .replace('${' + 'mail_id' + '}', String(mailId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -908,30 +838,20 @@ export class MailApi {
             throw new Error('Required parameter mailId was null or undefined when calling putCharactersCharacterIdMailMailId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -957,9 +877,9 @@ export class MailApi {
             method: RequestMethod.Put,
             headers: headers,
             body: contents == null ? '' : JSON.stringify(contents), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

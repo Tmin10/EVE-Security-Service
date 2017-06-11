@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class WarsApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -54,7 +55,7 @@ export class WarsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -73,7 +74,7 @@ export class WarsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -93,7 +94,7 @@ export class WarsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -108,35 +109,25 @@ export class WarsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getWarsWithHttpInfo(datasource?: string, maxWarId?: number, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/wars/`;
+        const path = this.basePath + '/wars/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (maxWarId !== undefined) {
-            if(maxWarId instanceof Date) {
-                queryParameters.set('max_war_id', <any>maxWarId.d.toISOString());
-            } else {
-                queryParameters.set('max_war_id', <any>maxWarId);
-            }
+            queryParameters.set('max_war_id', <any>maxWarId);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -150,9 +141,9 @@ export class WarsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -170,7 +161,8 @@ export class WarsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getWarsWarIdWithHttpInfo(warId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/wars/${war_id}/`;
+        const path = this.basePath + '/wars/${war_id}/'
+                    .replace('${' + 'war_id' + '}', String(warId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -179,22 +171,16 @@ export class WarsApi {
             throw new Error('Required parameter warId was null or undefined when calling getWarsWarId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -208,9 +194,9 @@ export class WarsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -229,7 +215,8 @@ export class WarsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getWarsWarIdKillmailsWithHttpInfo(warId: number, datasource?: string, page?: number, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/wars/${war_id}/killmails/`;
+        const path = this.basePath + '/wars/${war_id}/killmails/'
+                    .replace('${' + 'war_id' + '}', String(warId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -238,30 +225,20 @@ export class WarsApi {
             throw new Error('Required parameter warId was null or undefined when calling getWarsWarIdKillmails.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (page !== undefined) {
-            if(page instanceof Date) {
-                queryParameters.set('page', <any>page.d.toISOString());
-            } else {
-                queryParameters.set('page', <any>page);
-            }
+            queryParameters.set('page', <any>page);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -275,9 +252,9 @@ export class WarsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

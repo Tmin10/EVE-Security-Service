@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class UniverseApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -54,7 +55,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -72,7 +73,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -92,7 +93,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -110,7 +111,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -130,7 +131,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -149,7 +150,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -167,7 +168,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -186,7 +187,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -205,7 +206,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -225,7 +226,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -244,7 +245,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -263,7 +264,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -282,7 +283,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -300,7 +301,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -320,7 +321,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -339,7 +340,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -358,7 +359,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -376,7 +377,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -396,7 +397,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -414,7 +415,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -432,7 +433,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -450,7 +451,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -470,7 +471,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -489,7 +490,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -509,7 +510,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -528,7 +529,7 @@ export class UniverseApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -543,35 +544,25 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseBloodlinesWithHttpInfo(datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/bloodlines/`;
+        const path = this.basePath + '/universe/bloodlines/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -585,9 +576,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -604,27 +595,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseCategoriesWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/categories/`;
+        const path = this.basePath + '/universe/categories/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -638,9 +623,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -659,7 +644,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseCategoriesCategoryIdWithHttpInfo(categoryId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/categories/${category_id}/`;
+        const path = this.basePath + '/universe/categories/${category_id}/'
+                    .replace('${' + 'category_id' + '}', String(categoryId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -668,30 +654,20 @@ export class UniverseApi {
             throw new Error('Required parameter categoryId was null or undefined when calling getUniverseCategoriesCategoryId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -705,9 +681,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -724,27 +700,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseConstellationsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/constellations/`;
+        const path = this.basePath + '/universe/constellations/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -758,9 +728,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -779,7 +749,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseConstellationsConstellationIdWithHttpInfo(constellationId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/constellations/${constellation_id}/`;
+        const path = this.basePath + '/universe/constellations/${constellation_id}/'
+                    .replace('${' + 'constellation_id' + '}', String(constellationId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -788,30 +759,20 @@ export class UniverseApi {
             throw new Error('Required parameter constellationId was null or undefined when calling getUniverseConstellationsConstellationId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -825,9 +786,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -845,35 +806,25 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseFactionsWithHttpInfo(datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/factions/`;
+        const path = this.basePath + '/universe/factions/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -887,9 +838,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -906,27 +857,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseGraphicsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/graphics/`;
+        const path = this.basePath + '/universe/graphics/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -940,9 +885,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -960,7 +905,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseGraphicsGraphicIdWithHttpInfo(graphicId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/graphics/${graphic_id}/`;
+        const path = this.basePath + '/universe/graphics/${graphic_id}/'
+                    .replace('${' + 'graphic_id' + '}', String(graphicId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -969,22 +915,16 @@ export class UniverseApi {
             throw new Error('Required parameter graphicId was null or undefined when calling getUniverseGraphicsGraphicId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -998,9 +938,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1018,35 +958,25 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseGroupsWithHttpInfo(datasource?: string, page?: number, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/groups/`;
+        const path = this.basePath + '/universe/groups/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (page !== undefined) {
-            if(page instanceof Date) {
-                queryParameters.set('page', <any>page.d.toISOString());
-            } else {
-                queryParameters.set('page', <any>page);
-            }
+            queryParameters.set('page', <any>page);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1060,9 +990,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1081,7 +1011,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseGroupsGroupIdWithHttpInfo(groupId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/groups/${group_id}/`;
+        const path = this.basePath + '/universe/groups/${group_id}/'
+                    .replace('${' + 'group_id' + '}', String(groupId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1090,30 +1021,20 @@ export class UniverseApi {
             throw new Error('Required parameter groupId was null or undefined when calling getUniverseGroupsGroupId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1127,9 +1048,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1147,7 +1068,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseMoonsMoonIdWithHttpInfo(moonId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/moons/${moon_id}/`;
+        const path = this.basePath + '/universe/moons/${moon_id}/'
+                    .replace('${' + 'moon_id' + '}', String(moonId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1156,22 +1078,16 @@ export class UniverseApi {
             throw new Error('Required parameter moonId was null or undefined when calling getUniverseMoonsMoonId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1185,9 +1101,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1205,7 +1121,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniversePlanetsPlanetIdWithHttpInfo(planetId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/planets/${planet_id}/`;
+        const path = this.basePath + '/universe/planets/${planet_id}/'
+                    .replace('${' + 'planet_id' + '}', String(planetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1214,22 +1131,16 @@ export class UniverseApi {
             throw new Error('Required parameter planetId was null or undefined when calling getUniversePlanetsPlanetId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1243,9 +1154,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1263,35 +1174,25 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseRacesWithHttpInfo(datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/races/`;
+        const path = this.basePath + '/universe/races/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1305,9 +1206,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1324,27 +1225,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseRegionsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/regions/`;
+        const path = this.basePath + '/universe/regions/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1358,9 +1253,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1379,7 +1274,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseRegionsRegionIdWithHttpInfo(regionId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/regions/${region_id}/`;
+        const path = this.basePath + '/universe/regions/${region_id}/'
+                    .replace('${' + 'region_id' + '}', String(regionId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1388,30 +1284,20 @@ export class UniverseApi {
             throw new Error('Required parameter regionId was null or undefined when calling getUniverseRegionsRegionId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1425,9 +1311,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1445,7 +1331,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseStargatesStargateIdWithHttpInfo(stargateId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/stargates/${stargate_id}/`;
+        const path = this.basePath + '/universe/stargates/${stargate_id}/'
+                    .replace('${' + 'stargate_id' + '}', String(stargateId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1454,22 +1341,16 @@ export class UniverseApi {
             throw new Error('Required parameter stargateId was null or undefined when calling getUniverseStargatesStargateId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1483,9 +1364,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1503,7 +1384,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseStationsStationIdWithHttpInfo(stationId: number, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/stations/${station_id}/`;
+        const path = this.basePath + '/universe/stations/${station_id}/'
+                    .replace('${' + 'station_id' + '}', String(stationId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1512,22 +1394,16 @@ export class UniverseApi {
             throw new Error('Required parameter stationId was null or undefined when calling getUniverseStationsStationId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1541,9 +1417,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1560,27 +1436,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseStructuresWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/structures/`;
+        const path = this.basePath + '/universe/structures/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1594,9 +1464,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1615,7 +1485,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseStructuresStructureIdWithHttpInfo(structureId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/structures/${structure_id}/`;
+        const path = this.basePath + '/universe/structures/${structure_id}/'
+                    .replace('${' + 'structure_id' + '}', String(structureId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1624,30 +1495,20 @@ export class UniverseApi {
             throw new Error('Required parameter structureId was null or undefined when calling getUniverseStructuresStructureId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1670,9 +1531,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1689,27 +1550,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseSystemJumpsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/system_jumps/`;
+        const path = this.basePath + '/universe/system_jumps/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1723,9 +1578,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1742,27 +1597,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseSystemKillsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/system_kills/`;
+        const path = this.basePath + '/universe/system_kills/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1776,9 +1625,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1795,27 +1644,21 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseSystemsWithHttpInfo(datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/systems/`;
+        const path = this.basePath + '/universe/systems/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1829,9 +1672,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1850,7 +1693,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseSystemsSystemIdWithHttpInfo(systemId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/systems/${system_id}/`;
+        const path = this.basePath + '/universe/systems/${system_id}/'
+                    .replace('${' + 'system_id' + '}', String(systemId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1859,30 +1703,20 @@ export class UniverseApi {
             throw new Error('Required parameter systemId was null or undefined when calling getUniverseSystemsSystemId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1896,9 +1730,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1916,35 +1750,25 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseTypesWithHttpInfo(datasource?: string, page?: number, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/types/`;
+        const path = this.basePath + '/universe/types/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (page !== undefined) {
-            if(page instanceof Date) {
-                queryParameters.set('page', <any>page.d.toISOString());
-            } else {
-                queryParameters.set('page', <any>page);
-            }
+            queryParameters.set('page', <any>page);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1958,9 +1782,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1979,7 +1803,8 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getUniverseTypesTypeIdWithHttpInfo(typeId: number, datasource?: string, language?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/types/${type_id}/`;
+        const path = this.basePath + '/universe/types/${type_id}/'
+                    .replace('${' + 'type_id' + '}', String(typeId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1988,30 +1813,20 @@ export class UniverseApi {
             throw new Error('Required parameter typeId was null or undefined when calling getUniverseTypesTypeId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -2025,9 +1840,9 @@ export class UniverseApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -2045,7 +1860,7 @@ export class UniverseApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postUniverseNamesWithHttpInfo(ids: Array<number>, datasource?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/universe/names/`;
+        const path = this.basePath + '/universe/names/';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -2054,22 +1869,16 @@ export class UniverseApi {
             throw new Error('Required parameter ids was null or undefined when calling postUniverseNames.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -2086,9 +1895,9 @@ export class UniverseApi {
             method: RequestMethod.Post,
             headers: headers,
             body: ids == null ? '' : JSON.stringify(ids), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

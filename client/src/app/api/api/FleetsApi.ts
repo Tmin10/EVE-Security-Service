@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class FleetsApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -56,7 +57,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -77,7 +78,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -98,7 +99,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -118,7 +119,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -139,7 +140,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -160,7 +161,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -181,7 +182,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -201,7 +202,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -222,7 +223,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -243,7 +244,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -265,7 +266,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -287,7 +288,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -309,7 +310,7 @@ export class FleetsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -326,7 +327,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteFleetsFleetIdMembersMemberIdWithHttpInfo(fleetId: number, memberId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/members/${member_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/members/${member_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'member_id' + '}', String(memberId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -339,30 +342,20 @@ export class FleetsApi {
             throw new Error('Required parameter memberId was null or undefined when calling deleteFleetsFleetIdMembersMemberId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -385,9 +378,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Delete,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -407,7 +400,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteFleetsFleetIdSquadsSquadIdWithHttpInfo(fleetId: number, squadId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/squads/${squad_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/squads/${squad_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'squad_id' + '}', String(squadId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -420,30 +415,20 @@ export class FleetsApi {
             throw new Error('Required parameter squadId was null or undefined when calling deleteFleetsFleetIdSquadsSquadId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -466,9 +451,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Delete,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -488,7 +473,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteFleetsFleetIdWingsWingIdWithHttpInfo(fleetId: number, wingId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/wings/${wing_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/wings/${wing_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'wing_id' + '}', String(wingId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -501,30 +488,20 @@ export class FleetsApi {
             throw new Error('Required parameter wingId was null or undefined when calling deleteFleetsFleetIdWingsWingId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -547,9 +524,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Delete,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -568,7 +545,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getFleetsFleetIdWithHttpInfo(fleetId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -577,30 +555,20 @@ export class FleetsApi {
             throw new Error('Required parameter fleetId was null or undefined when calling getFleetsFleetId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -623,9 +591,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -645,7 +613,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getFleetsFleetIdMembersWithHttpInfo(fleetId: number, datasource?: string, language?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/members/`;
+        const path = this.basePath + '/fleets/${fleet_id}/members/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -654,38 +623,24 @@ export class FleetsApi {
             throw new Error('Required parameter fleetId was null or undefined when calling getFleetsFleetIdMembers.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -708,9 +663,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -730,7 +685,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getFleetsFleetIdWingsWithHttpInfo(fleetId: number, datasource?: string, language?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/wings/`;
+        const path = this.basePath + '/fleets/${fleet_id}/wings/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -739,38 +695,24 @@ export class FleetsApi {
             throw new Error('Required parameter fleetId was null or undefined when calling getFleetsFleetIdWings.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (language !== undefined) {
-            if(language instanceof Date) {
-                queryParameters.set('language', <any>language.d.toISOString());
-            } else {
-                queryParameters.set('language', <any>language);
-            }
+            queryParameters.set('language', <any>language);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -793,9 +735,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -815,7 +757,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postFleetsFleetIdMembersWithHttpInfo(fleetId: number, invitation: models.PostFleetsFleetIdMembersInvitation, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/members/`;
+        const path = this.basePath + '/fleets/${fleet_id}/members/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -828,30 +771,20 @@ export class FleetsApi {
             throw new Error('Required parameter invitation was null or undefined when calling postFleetsFleetIdMembers.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -877,9 +810,9 @@ export class FleetsApi {
             method: RequestMethod.Post,
             headers: headers,
             body: invitation == null ? '' : JSON.stringify(invitation), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -898,7 +831,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postFleetsFleetIdWingsWithHttpInfo(fleetId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/wings/`;
+        const path = this.basePath + '/fleets/${fleet_id}/wings/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -907,30 +841,20 @@ export class FleetsApi {
             throw new Error('Required parameter fleetId was null or undefined when calling postFleetsFleetIdWings.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -953,9 +877,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -975,7 +899,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postFleetsFleetIdWingsWingIdSquadsWithHttpInfo(fleetId: number, wingId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/wings/${wing_id}/squads/`;
+        const path = this.basePath + '/fleets/${fleet_id}/wings/${wing_id}/squads/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'wing_id' + '}', String(wingId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -988,30 +914,20 @@ export class FleetsApi {
             throw new Error('Required parameter wingId was null or undefined when calling postFleetsFleetIdWingsWingIdSquads.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1034,9 +950,9 @@ export class FleetsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1056,7 +972,8 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putFleetsFleetIdWithHttpInfo(fleetId: number, newSettings: models.PutFleetsFleetIdNewSettings, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1069,30 +986,20 @@ export class FleetsApi {
             throw new Error('Required parameter newSettings was null or undefined when calling putFleetsFleetId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1118,9 +1025,9 @@ export class FleetsApi {
             method: RequestMethod.Put,
             headers: headers,
             body: newSettings == null ? '' : JSON.stringify(newSettings), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1141,7 +1048,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putFleetsFleetIdMembersMemberIdWithHttpInfo(fleetId: number, memberId: number, movement: models.PutFleetsFleetIdMembersMemberIdMovement, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/members/${member_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/members/${member_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'member_id' + '}', String(memberId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1158,30 +1067,20 @@ export class FleetsApi {
             throw new Error('Required parameter movement was null or undefined when calling putFleetsFleetIdMembersMemberId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1207,9 +1106,9 @@ export class FleetsApi {
             method: RequestMethod.Put,
             headers: headers,
             body: movement == null ? '' : JSON.stringify(movement), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1230,7 +1129,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putFleetsFleetIdSquadsSquadIdWithHttpInfo(fleetId: number, naming: models.PutFleetsFleetIdSquadsSquadIdNaming, squadId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/squads/${squad_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/squads/${squad_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'squad_id' + '}', String(squadId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1247,30 +1148,20 @@ export class FleetsApi {
             throw new Error('Required parameter squadId was null or undefined when calling putFleetsFleetIdSquadsSquadId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1296,9 +1187,9 @@ export class FleetsApi {
             method: RequestMethod.Put,
             headers: headers,
             body: naming == null ? '' : JSON.stringify(naming), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -1319,7 +1210,9 @@ export class FleetsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putFleetsFleetIdWingsWingIdWithHttpInfo(fleetId: number, naming: models.PutFleetsFleetIdWingsWingIdNaming, wingId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/fleets/${fleet_id}/wings/${wing_id}/`;
+        const path = this.basePath + '/fleets/${fleet_id}/wings/${wing_id}/'
+                    .replace('${' + 'fleet_id' + '}', String(fleetId))
+                    .replace('${' + 'wing_id' + '}', String(wingId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1336,30 +1229,20 @@ export class FleetsApi {
             throw new Error('Required parameter wingId was null or undefined when calling putFleetsFleetIdWingsWingId.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -1385,9 +1268,9 @@ export class FleetsApi {
             method: RequestMethod.Put,
             headers: headers,
             body: naming == null ? '' : JSON.stringify(naming), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

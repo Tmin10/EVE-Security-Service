@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+/* tslint:disable:no-unused-variable member-ordering */
+
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { Http, Headers, URLSearchParams }                    from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -22,11 +24,10 @@ import * as models                                           from '../model/mode
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
-/* tslint:disable:no-unused-variable member-ordering */
-
 
 @Injectable()
 export class ContactsApi {
+
     protected basePath = 'https://esi.tech.ccp.is/latest';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
@@ -56,7 +57,7 @@ export class ContactsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -77,7 +78,7 @@ export class ContactsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -97,7 +98,7 @@ export class ContactsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -121,7 +122,7 @@ export class ContactsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -145,7 +146,7 @@ export class ContactsApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return response.json() || {};
                 }
             });
     }
@@ -162,7 +163,8 @@ export class ContactsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public deleteCharactersCharacterIdContactsWithHttpInfo(characterId: number, contactIds: Array<number>, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/contacts/`;
+        const path = this.basePath + '/characters/${character_id}/contacts/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -175,30 +177,20 @@ export class ContactsApi {
             throw new Error('Required parameter contactIds was null or undefined when calling deleteCharactersCharacterIdContacts.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -224,9 +216,9 @@ export class ContactsApi {
             method: RequestMethod.Delete,
             headers: headers,
             body: contactIds == null ? '' : JSON.stringify(contactIds), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -246,7 +238,8 @@ export class ContactsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdContactsWithHttpInfo(characterId: number, datasource?: string, page?: number, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/contacts/`;
+        const path = this.basePath + '/characters/${character_id}/contacts/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -255,38 +248,24 @@ export class ContactsApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdContacts.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (page !== undefined) {
-            if(page instanceof Date) {
-                queryParameters.set('page', <any>page.d.toISOString());
-            } else {
-                queryParameters.set('page', <any>page);
-            }
+            queryParameters.set('page', <any>page);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -309,9 +288,9 @@ export class ContactsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -330,7 +309,8 @@ export class ContactsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public getCharactersCharacterIdContactsLabelsWithHttpInfo(characterId: number, datasource?: string, token?: string, userAgent?: string, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/contacts/labels/`;
+        const path = this.basePath + '/characters/${character_id}/contacts/labels/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -339,30 +319,20 @@ export class ContactsApi {
             throw new Error('Required parameter characterId was null or undefined when calling getCharactersCharacterIdContactsLabels.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -385,9 +355,9 @@ export class ContactsApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Get,
             headers: headers,
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -410,7 +380,8 @@ export class ContactsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public postCharactersCharacterIdContactsWithHttpInfo(characterId: number, contactIds: Array<number>, standing: number, datasource?: string, labelId?: number, token?: string, userAgent?: string, watched?: boolean, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/contacts/`;
+        const path = this.basePath + '/characters/${character_id}/contacts/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -427,54 +398,32 @@ export class ContactsApi {
             throw new Error('Required parameter standing was null or undefined when calling postCharactersCharacterIdContacts.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (labelId !== undefined) {
-            if(labelId instanceof Date) {
-                queryParameters.set('label_id', <any>labelId.d.toISOString());
-            } else {
-                queryParameters.set('label_id', <any>labelId);
-            }
+            queryParameters.set('label_id', <any>labelId);
         }
 
         if (standing !== undefined) {
-            if(standing instanceof Date) {
-                queryParameters.set('standing', <any>standing.d.toISOString());
-            } else {
-                queryParameters.set('standing', <any>standing);
-            }
+            queryParameters.set('standing', <any>standing);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
         if (watched !== undefined) {
-            if(watched instanceof Date) {
-                queryParameters.set('watched', <any>watched.d.toISOString());
-            } else {
-                queryParameters.set('watched', <any>watched);
-            }
+            queryParameters.set('watched', <any>watched);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -500,9 +449,9 @@ export class ContactsApi {
             method: RequestMethod.Post,
             headers: headers,
             body: contactIds == null ? '' : JSON.stringify(contactIds), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
@@ -525,7 +474,8 @@ export class ContactsApi {
      * @param xUserAgent Client identifier, takes precedence over User-Agent
      */
     public putCharactersCharacterIdContactsWithHttpInfo(characterId: number, contactIds: Array<number>, standing: number, datasource?: string, labelId?: number, token?: string, userAgent?: string, watched?: boolean, xUserAgent?: string, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + `/characters/${character_id}/contacts/`;
+        const path = this.basePath + '/characters/${character_id}/contacts/'
+                    .replace('${' + 'character_id' + '}', String(characterId));
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -542,54 +492,32 @@ export class ContactsApi {
             throw new Error('Required parameter standing was null or undefined when calling putCharactersCharacterIdContacts.');
         }
         if (datasource !== undefined) {
-            if(datasource instanceof Date) {
-                queryParameters.set('datasource', <any>datasource.d.toISOString());
-            } else {
-                queryParameters.set('datasource', <any>datasource);
-            }
+            queryParameters.set('datasource', <any>datasource);
         }
 
         if (labelId !== undefined) {
-            if(labelId instanceof Date) {
-                queryParameters.set('label_id', <any>labelId.d.toISOString());
-            } else {
-                queryParameters.set('label_id', <any>labelId);
-            }
+            queryParameters.set('label_id', <any>labelId);
         }
 
         if (standing !== undefined) {
-            if(standing instanceof Date) {
-                queryParameters.set('standing', <any>standing.d.toISOString());
-            } else {
-                queryParameters.set('standing', <any>standing);
-            }
+            queryParameters.set('standing', <any>standing);
         }
 
         if (token !== undefined) {
-            if(token instanceof Date) {
-                queryParameters.set('token', <any>token.d.toISOString());
-            } else {
-                queryParameters.set('token', <any>token);
-            }
+            queryParameters.set('token', <any>token);
         }
 
         if (userAgent !== undefined) {
-            if(userAgent instanceof Date) {
-                queryParameters.set('user_agent', <any>userAgent.d.toISOString());
-            } else {
-                queryParameters.set('user_agent', <any>userAgent);
-            }
+            queryParameters.set('user_agent', <any>userAgent);
         }
 
         if (watched !== undefined) {
-            if(watched instanceof Date) {
-                queryParameters.set('watched', <any>watched.d.toISOString());
-            } else {
-                queryParameters.set('watched', <any>watched);
-            }
+            queryParameters.set('watched', <any>watched);
         }
 
-        headers.set('X-User-Agent', String(xUserAgent));
+        if (xUserAgent !== undefined && xUserAgent !== null) {
+            headers.set('X-User-Agent', String(xUserAgent));
+        }
 
         // to determine the Content-Type header
         let consumes: string[] = [
@@ -615,9 +543,9 @@ export class ContactsApi {
             method: RequestMethod.Put,
             headers: headers,
             body: contactIds == null ? '' : JSON.stringify(contactIds), // https://github.com/angular/angular/issues/10612
-            search: queryParameters
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
         });
-
         // https://github.com/swagger-api/swagger-codegen/issues/4037
         if (extraHttpRequestParams) {
             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
