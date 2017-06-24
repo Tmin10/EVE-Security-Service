@@ -11,7 +11,7 @@ import { Character } from './classes/character';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EVE Security Service';
+  title = 'EVE Security Service v.0.2.0';
   keyID = '';
   vCode = '';
   key: Key;
