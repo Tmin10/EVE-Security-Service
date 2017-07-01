@@ -17,8 +17,9 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
-
+config.json
 
 # System Files
 .DS_Store
 Thumbs.db
+/config.json
