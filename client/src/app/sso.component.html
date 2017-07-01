@@ -1,0 +1,11 @@
+<div *ngIf="error" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Hmm...</strong> {{error}}
+</div>  
+<a 
+    href="https://login.eveonline.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:4200/sso&client_id={{conf.get('client_id')}}&scope={{conf.get('scope')}}&state={{state}}"
+    *ngIf="showButton"
+>
+    <img src="{{conf.get('loginButtonImageUrl')}}"/>
+</a><br />
+<b>code:</b> {{code}}<br /> 
+<b>state:</b> {{state}}

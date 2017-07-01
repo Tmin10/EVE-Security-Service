@@ -7,14 +7,17 @@ import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index.component';
+import { SsoComponent } from './sso.component'
 import { ApiService } from './api.service';
+import { ConfigService } from './config.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    SsoComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -23,7 +26,10 @@ import { AppRoutingModule }     from './app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ ApiService ],
+  providers: [ 
+    ApiService,
+    ConfigService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

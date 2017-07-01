@@ -9,6 +9,52 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="m-app-loading">
+      <style type="text/css">
+        div.m-app-loading {
+          bottom: 0px;
+          left: 0px;
+          opacity: 1.0;
+          position: fixed;
+          right: 0px;
+          top: 0px;
+        }
+        div.m-app-loading div.messaging {
+          left: 0px;
+          margin-top: -37px;
+          position: absolute;
+          right: 0px;
+          text-align: center;
+          top: 50%;
+          color: rgb(41, 43, 44);
+          font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+          cursor: auto;
+          box-sizing: border-box;
+        }
+        div.m-app-loading h1 {
+          font-size: 40px;
+          font-weight: 500;
+          line-height: 44px;
+          margin-bottom: 8px;
+          margin-left: 0px;
+          margin-right: 0px;
+          margin-top: 0px;
+        }
+        div.m-app-loading p {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          margin-bottom: 16px;
+          margin-top: 0px;
+        }
+      </style>
+      <div class="messaging">
+        <h1>EVE Security Service</h1>
+        <p>loading, please wait</p>
+      </div>
+	  </div>
+  </app-root>
 </body>
 </html>
