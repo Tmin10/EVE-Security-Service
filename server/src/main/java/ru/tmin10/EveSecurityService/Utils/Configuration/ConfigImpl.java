@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import org.springframework.stereotype.Repository;
+import ru.tmin10.EveSecurityService.EveSecurityServiceApplication;
 
 import java.io.*;
 
@@ -17,9 +18,22 @@ public class ConfigImpl implements Config
     {
         this.rand = Math.random();
         Gson gson = new Gson();
+        String path = EveSecurityServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().toString();
+        int location = path.indexOf("!");
+        if (location != -1)
+        {
+            //jar file
+            path = path.substring(path.indexOf("file:") + 6, path.indexOf("!"));
+            path = path.substring(0, path.lastIndexOf("/") + 1);
+        }
+        else
+        {
+            //class
+            path = path.substring(path.indexOf("file:") + 6, path.indexOf("target"));
+        }
         try
         {
-            JsonReader reader = new JsonReader(new FileReader("config.json"));
+            JsonReader reader = new JsonReader(new FileReader(path + "config.json"));
             this.fileConfig = gson.fromJson(reader, new TypeToken<FileConfig>(){}.getType());
         } catch (FileNotFoundException e)
         {
