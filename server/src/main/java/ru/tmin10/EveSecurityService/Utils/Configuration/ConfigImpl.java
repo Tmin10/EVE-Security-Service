@@ -54,7 +54,7 @@ public class ConfigImpl implements Config
         if (location != -1)
         {
             //jar file
-            path = path.substring(path.indexOf("file:") + 6, path.indexOf("!"));
+            path = path.substring(path.indexOf("file:") + 5, path.indexOf("!"));
             path = path.substring(0, path.lastIndexOf("/") + 1);
         }
         else

@@ -18,7 +18,7 @@ public class EveSecurityServiceApplication
         }
         else
         {
-            throw new Exception("config.json not found. Try to create it.");
+            throw new Exception(ConfigImpl.getConfigPath()+" not found. Try to create it.");
         }
     }
 }
