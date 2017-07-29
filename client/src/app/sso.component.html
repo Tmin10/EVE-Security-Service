@@ -2,10 +2,10 @@
     <strong>Hmm...</strong> {{error}}
 </div>  
 <a 
-    href="https://login.eveonline.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:4200/sso&client_id={{conf.get('client_id')}}&scope={{conf.get('scope')}}&state={{state}}"
-    *ngIf="showButton"
+    href="https://login.eveonline.com/oauth/authorize?response_type=code&redirect_uri={{config.redirect_uri}}&client_id={{config.client_id}}&scope={{config.scope}}&state={{state}}"
+    *ngIf="showButton && config"
 >
-    <img src="{{conf.get('loginButtonImageUrl')}}"/>
+    <img src="https://images.contentful.com/idjq7aai9ylm/4PTzeiAshqiM8osU2giO0Y/5cc4cb60bac52422da2e45db87b6819c/EVE_SSO_Login_Buttons_Large_White.png?w=270&h=45"/>
 </a><br />
 <b>code:</b> {{code}}<br /> 
 <b>state:</b> {{state}}

@@ -2,7 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 
 import { ConfigService } from './config.service';
-
+import { Config } from './classes/config';
 
 @Component({
   selector: 'app-sso',
@@ -13,13 +13,15 @@ export class SsoComponent implements OnInit {
   state = '';
   error;
   showButton = false;
+  config:Config;
 
   constructor (
     private activatedRoute: ActivatedRoute,
-    private conf: ConfigService
+    private configService: ConfigService
   ) { }
 
   ngOnInit() {
+    this.configService.get().then(config => this.config = config);
     if (localStorage.getItem('state')) {
       this.state = localStorage.getItem('state');
       this.activatedRoute.queryParams.subscribe((params: Params) => {

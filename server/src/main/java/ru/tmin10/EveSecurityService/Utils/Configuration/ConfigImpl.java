@@ -18,22 +18,9 @@ public class ConfigImpl implements Config
     {
         this.rand = Math.random();
         Gson gson = new Gson();
-        String path = EveSecurityServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().toString();
-        int location = path.indexOf("!");
-        if (location != -1)
-        {
-            //jar file
-            path = path.substring(path.indexOf("file:") + 6, path.indexOf("!"));
-            path = path.substring(0, path.lastIndexOf("/") + 1);
-        }
-        else
-        {
-            //class
-            path = path.substring(path.indexOf("file:") + 6, path.indexOf("target"));
-        }
         try
         {
-            JsonReader reader = new JsonReader(new FileReader(path + "config.json"));
+            JsonReader reader = new JsonReader(new FileReader(getConfigPath()));
             this.fileConfig = gson.fromJson(reader, new TypeToken<FileConfig>(){}.getType());
         } catch (FileNotFoundException e)
         {
@@ -58,5 +45,23 @@ public class ConfigImpl implements Config
             clientConfig.setRedirect_uri(fileConfig.getRedirect_uri());
         }
         return clientConfig;
+    }
+
+    public static String getConfigPath()
+    {
+        String path = EveSecurityServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().toString();
+        int location = path.indexOf("!");
+        if (location != -1)
+        {
+            //jar file
+            path = path.substring(path.indexOf("file:") + 6, path.indexOf("!"));
+            path = path.substring(0, path.lastIndexOf("/") + 1);
+        }
+        else
+        {
+            //class
+            path = path.substring(path.indexOf("file:") + 6, path.indexOf("target"));
+        }
+        return path + "config.json";
     }
 }
