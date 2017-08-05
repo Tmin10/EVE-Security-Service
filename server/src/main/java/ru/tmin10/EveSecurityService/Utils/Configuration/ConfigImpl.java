@@ -4,19 +4,21 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.tmin10.EveSecurityService.EveSecurityServiceApplication;
 
+import javax.validation.constraints.NotNull;
 import java.io.*;
 
-@Repository
+@Service
 public class ConfigImpl implements Config
 {
-    private final double rand;
     private FileConfig fileConfig;
+    private ClientConfig clientConfig = null;
+    private ServerConfig serverConfig = null;
 
     public ConfigImpl()
     {
-        this.rand = Math.random();
         Gson gson = new Gson();
         try
         {
@@ -29,24 +31,44 @@ public class ConfigImpl implements Config
     }
 
     @Override
+    @NotNull
     public ServerConfig getServerConfig()
     {
-        return null;
+        if (serverConfig != null)
+        {
+            return serverConfig;
+        }
+        if (fileConfig != null)
+        {
+            serverConfig = new ServerConfig(
+                    fileConfig.getClient_secret(),
+                    fileConfig.getDbHost(),
+                    fileConfig.getDbPort(),
+                    fileConfig.getDbName(),
+                    fileConfig.getDbUser(),
+                    fileConfig.getDbPassword(),
+                    fileConfig.getDbSchema()
+                    );
+        }
+        return serverConfig;
     }
 
     @Override
+    @NotNull
     public ClientConfig getClientConfig()
     {
-        ClientConfig clientConfig = new ClientConfig();
+        if (clientConfig != null)
+        {
+            return clientConfig;
+        }
         if (fileConfig != null)
         {
-            clientConfig.setClient_id(fileConfig.getClient_id());
-            clientConfig.setScope(fileConfig.getScope());
-            clientConfig.setRedirect_uri(fileConfig.getRedirect_uri());
+            clientConfig = new ClientConfig(fileConfig.getClient_id(), fileConfig.getScope(), fileConfig.getRedirect_uri());
         }
         return clientConfig;
     }
 
+    @NotNull
     public static String getConfigPath()
     {
         String path = EveSecurityServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().toString();

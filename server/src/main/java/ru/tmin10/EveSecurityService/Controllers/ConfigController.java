@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.tmin10.EveSecurityService.Utils.Configuration.ClientConfig;
 import ru.tmin10.EveSecurityService.Utils.Configuration.Config;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
-@Component
 public class ConfigController
 {
     private final Config config;
@@ -22,6 +23,7 @@ public class ConfigController
 
     @RequestMapping("/config")
     @CrossOrigin //TODO for development run only
+    @NotNull
     public ClientConfig getConfiguration()
     {
         return config.getClientConfig();

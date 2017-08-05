@@ -1,38 +1,36 @@
 package ru.tmin10.EveSecurityService.Utils.Configuration;
 
+import javax.validation.constraints.NotNull;
+
 public class ClientConfig
 {
-    private String client_id;
-    private String scope;
-    private String redirect_uri;
+    private final String client_id;
+    private final String scope;
+    private final String redirect_uri;
 
+    public ClientConfig(@NotNull String client_id, @NotNull String scope, @NotNull String redirect_uri)
+    {
+        this.client_id = client_id;
+        this.scope = scope;
+        this.redirect_uri = redirect_uri;
+    }
+
+    @NotNull
     public String getClient_id()
     {
         return client_id;
     }
 
-    public void setClient_id(String client_id)
-    {
-        this.client_id = client_id;
-    }
-
+    @NotNull
     public String getScope()
     {
         return scope;
     }
 
-    public void setScope(String scope)
-    {
-        this.scope = scope;
-    }
-
+    @NotNull
     public String getRedirect_uri()
     {
         return redirect_uri;
     }
 
-    public void setRedirect_uri(String redirect_uri)
-    {
-        this.redirect_uri = redirect_uri;
-    }
 }

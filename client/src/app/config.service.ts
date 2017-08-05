@@ -11,7 +11,7 @@ export class ConfigService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
     //TODO port number for development run only
-    private configUrl = 'config';
+    private configUrl = '/config';
 
     constructor(private http: Http) { }
 
