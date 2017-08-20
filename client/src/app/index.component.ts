@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ApiService } from './api.service';
 
@@ -10,14 +11,19 @@ import { ApiService } from './api.service';
 })
 export class IndexComponent {
   title = 'EVE Security Service v.0.2.0';
-  keyID = '';
-  vCode = '';
-  // key: Key;
-  // characters: Character[];
+  character = '';
 
-  constructor (private apiService: ApiService) { }
+  constructor (
+    private apiService: ApiService,
+    private router: Router
+  ) { }
 
-  // public getCharacters (event, keyID, vCode) {
-  //   this.apiService.getKey(keyID, vCode).then(key => this.characters = key.characters);
-  // }
+  ngOnInit() {
+    if (!localStorage.getItem('token')) {
+      this.router.navigateByUrl('/sso');
+    }
+    else {
+      this.apiService.getCharacterInfo().then(character => this.character = character);
+    }
+  }
 }

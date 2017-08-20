@@ -1,17 +1,14 @@
 package ru.tmin10.EveSecurityService.Controllers;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tmin10.EVESecurityService.serverApi.invoker.ApiClient;
+import ru.tmin10.EveSecurityService.Classes.SSOVerifyAnswer;
 import ru.tmin10.EveSecurityService.Classes.ServerResponse;
 import ru.tmin10.EveSecurityService.Utils.Configuration.Config;
-import ru.tmin10.EveSecurityService.Utils.SSO;
-
-import java.util.HashMap;
+import ru.tmin10.EveSecurityService.Utils.*;
 
 @RestController
 public class GetTokenController
@@ -24,30 +21,33 @@ public class GetTokenController
         this.config = config;
     }
 
+    @CrossOrigin //TODO for development run only
     @RequestMapping("/token")
-    public ServerResponse getToken(@RequestParam(value="code") String code) throws Exception
+    public ServerResponse getToken(@RequestParam(value = "code") String code) throws Exception
     {
         SSO sso = new SSO(config);
         sso.setCode(code);
         ServerResponse response = new ServerResponse();
-//        response.getBody().put("accessToken", sso.getAccessToken());
-//        response.getBody().put("refreshToken",  sso.getRefreshToken());
+        DB database = new DB(config.getServerConfig().getJDBCConnectionString());
+        String clientToken = database.getClientToken(sso.getRefreshToken());
+        response.getBody().put("token", clientToken);
+        return response;
+    }
 
-        ApiClient client = new ApiClient();
-        client.setBasePath("https://login.eveonline.com");
-        client.setAccessToken(sso.getAccessToken());
-
-        Call call = client.buildCall("/oauth/verify",
-                "GET",
-                null,
-                null,
-                new HashMap<String, String>(),
-                null,
-                new String[]{"evesso"},
-                null);
-        Response serverResponse = call.execute();
-        String respBody = serverResponse.body().string();
-        response.getBody().put("text", respBody);
+    @CrossOrigin //TODO for development run only
+    @RequestMapping("/character")
+    public ServerResponse getCharacter(@RequestParam(value = "token") String token) throws Exception
+    {
+        DB database = new DB(config.getServerConfig().getJDBCConnectionString());
+        String refreshToken = database.getRefreshToken(token);
+        SSO sso = new SSO(config);
+        sso.setRefreshToken(refreshToken);
+        SSOVerifyAnswer ssoVerifyAnswer = sso.getSSOVerifyAnswer();
+        ServerResponse response = new ServerResponse();
+        response.getBody().put("CharacterName", ssoVerifyAnswer.getCharacterName());
+        response.getBody().put("CharacterID", ssoVerifyAnswer.getCharacterID());
+        response.getBody().put("CharacterOwnerHas", ssoVerifyAnswer.getCharacterOwnerHash());
+        response.getBody().put("Scope", ssoVerifyAnswer.getScopes());
         return response;
     }
 }

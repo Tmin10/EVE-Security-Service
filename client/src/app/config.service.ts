@@ -11,7 +11,7 @@ export class ConfigService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
     //TODO port number for development run only
-    private configUrl = '/config';
+    private configUrl:string = '/config';
 
     constructor(private http: Http) { }
 
@@ -23,8 +23,7 @@ export class ConfigService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
+        console.error('CONFIG ERROR: An error occurred', error);
         return Promise.reject(error.message || error);
     }
-
 }

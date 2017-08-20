@@ -7,8 +7,8 @@ import { SsoComponent } from './sso.component'
 import { ApiService } from './api.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sso', pathMatch: 'full' },
-  //{ path: '',  component: IndexComponent },
+  //{ path: '', redirectTo: '/sso', pathMatch: 'full' },
+  { path: '',  component: IndexComponent },
   { path: 'sso', component: SsoComponent }
 ];
 

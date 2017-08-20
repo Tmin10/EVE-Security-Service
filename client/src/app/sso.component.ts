@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 
 import { ConfigService } from './config.service';
+import { ApiService } from './api.service';
 import { Config } from './classes/config';
 
 @Component({
@@ -17,7 +18,9 @@ export class SsoComponent implements OnInit {
 
   constructor (
     private activatedRoute: ActivatedRoute,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -25,9 +28,14 @@ export class SsoComponent implements OnInit {
     if (localStorage.getItem('state')) {
       this.state = localStorage.getItem('state');
       this.activatedRoute.queryParams.subscribe((params: Params) => {
-        console.log(params);
         if (params['state'] == this.state) {
           this.code = params['code'];
+          this.apiService.getToken(this.code).then(
+            token => {
+              localStorage.setItem('token', token);
+              this.router.navigateByUrl('/');
+            }
+          );
         }
         else {
           if (params['state']) {

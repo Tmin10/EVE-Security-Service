@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Response;
 import ru.tmin10.EVESecurityService.serverApi.invoker.ApiClient;
+import ru.tmin10.EveSecurityService.Classes.SSOVerifyAnswer;
 import ru.tmin10.EveSecurityService.Utils.Configuration.Config;
 
 import javax.annotation.Nullable;
@@ -26,14 +27,16 @@ public class SSO
         this.config = config;
     }
 
-    public void setCode(@NotNull String code)
+    public void setCode(@NotNull String code) throws Exception
     {
         this.code = code;
+        getAccessTokenFromServer();
     }
 
-    public void setRefreshToken(@NotNull String refreshToken)
+    public void setRefreshToken(@NotNull String refreshToken) throws Exception
     {
         this.refreshToken = refreshToken;
+        refreshAccessToken();
     }
 
     @Nullable
@@ -54,6 +57,26 @@ public class SSO
             refreshAccessToken();
         }
         return accessToken;
+    }
+
+    public SSOVerifyAnswer getSSOVerifyAnswer() throws Exception
+    {
+        ApiClient client = new ApiClient();
+        client.setBasePath("https://login.eveonline.com");
+        client.setAccessToken(getAccessToken());
+
+        Call call = client.buildCall("/oauth/verify",
+                "GET",
+                null,
+                null,
+                new HashMap<String, String>(),
+                null,
+                new String[]{"evesso"},
+                null);
+        Response serverResponse = call.execute();
+        String respBody = serverResponse.body().string();
+        Gson gson = new Gson();
+        return gson.fromJson(respBody, SSOVerifyAnswer.class);
     }
 
     private void refreshAccessToken() throws Exception
@@ -89,7 +112,6 @@ public class SSO
         Response response = call.execute();
         Gson gson = new Gson();
         String respBody = response.body().string();
-        System.out.println(respBody);
         JsonObject body = gson.fromJson(respBody, JsonObject.class);
         if (body.has("error"))
         {
