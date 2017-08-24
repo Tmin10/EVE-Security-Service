@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 public class SSOVerifyAnswer
 {
     @SerializedName("CharacterID")
-    private String characterID;
+    private int characterID;
     @SerializedName("CharacterName")
     private String characterName;
     @SerializedName("ExpiresOn")
@@ -20,7 +20,7 @@ public class SSOVerifyAnswer
     private String characterOwnerHash;
 
     public SSOVerifyAnswer(
-            @Nonnull String characterID,
+            int characterID,
             @Nonnull String characterName,
             @Nonnull String expiresOn,
             @Nonnull String scopes,
@@ -35,8 +35,7 @@ public class SSOVerifyAnswer
         this.characterOwnerHash = characterOwnerHash;
     }
 
-    @Nonnull
-    public String getCharacterID()
+    public int getCharacterID()
     {
         return characterID;
     }

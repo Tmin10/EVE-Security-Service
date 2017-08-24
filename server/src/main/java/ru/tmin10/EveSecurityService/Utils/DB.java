@@ -50,4 +50,9 @@ public class DB
         md.update(Double.toString(Math.random()).getBytes("UTF-8"));
         return String.format("%064x", new java.math.BigInteger(1, md.digest()));
     }
+
+    public void closeConnection() throws SQLException
+    {
+        dbConnection.close();
+    }
 }
