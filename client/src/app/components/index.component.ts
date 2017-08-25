@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ApiService } from './api.service';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
   selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  templateUrl: './html/index.component.html',
+  styleUrls: ['./css/index.component.css']
 })
 export class IndexComponent {
   title = 'EVE Security Service v.0.2.0';

@@ -5,19 +5,21 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule }   from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { IndexComponent } from './index.component';
-import { SsoComponent } from './sso.component'
-import { ApiService } from './api.service';
-import { ConfigService } from './config.service';
+import { AppComponent } from '../components/app.component';
+import { IndexComponent } from '../components/index.component';
+import { SsoComponent } from '../components/sso.component';
+import { ExitComponent } from '../components/exit.component';
+import { ApiService } from '../services/api.service';
+import { ConfigService } from '../services/config.service';
 
-import { AppRoutingModule }     from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    SsoComponent
+    SsoComponent,
+    ExitComponent
   ],
   imports: [
     NgbModule.forRoot(),

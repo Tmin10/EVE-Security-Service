@@ -7,10 +7,10 @@ import java.util.Map;
 public class ServerResponse
 {
     private String type = "response";
-    private Map<String, String> body = new HashMap<>();
+    private Map<String, Object> body = new HashMap<>();
 
     @NotNull
-    public Map<String, String> getBody()
+    public Map<String, Object> getBody()
     {
         return body;
     }

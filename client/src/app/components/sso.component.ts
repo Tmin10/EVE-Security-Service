@@ -1,13 +1,13 @@
 import { OnInit, Component } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 
-import { ConfigService } from './config.service';
-import { ApiService } from './api.service';
-import { Config } from './classes/config';
+import { ConfigService } from '../services/config.service';
+import { ApiService } from '../services/api.service';
+import { Config } from '../classes/config';
 
 @Component({
   selector: 'app-sso',
-  templateUrl: './sso.component.html'
+  templateUrl: './html/sso.component.html'
 })
 export class SsoComponent implements OnInit {
   code = '';

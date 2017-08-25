@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StaticController
 {
-    @RequestMapping(value={"/sso"})
+    @RequestMapping(value={"/sso", "/exit"})
     public String getStatic()
     {
         return "index.html";

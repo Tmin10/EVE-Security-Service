@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.tmin10.EVESecurityService.serverApi.api.AllianceApi;
 import ru.tmin10.EVESecurityService.serverApi.api.CharacterApi;
 import ru.tmin10.EVESecurityService.serverApi.api.CorporationApi;
-import ru.tmin10.EVESecurityService.serverApi.model.GetAlliancesAllianceIdOk;
-import ru.tmin10.EVESecurityService.serverApi.model.GetCharactersCharacterIdOk;
-import ru.tmin10.EVESecurityService.serverApi.model.GetCorporationsCorporationIdOk;
+import ru.tmin10.EVESecurityService.serverApi.model.*;
 import ru.tmin10.EveSecurityService.Classes.SSOVerifyAnswer;
 import ru.tmin10.EveSecurityService.Classes.ServerResponse;
 import ru.tmin10.EveSecurityService.Utils.Configuration.Config;
 import ru.tmin10.EveSecurityService.Utils.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class GetTokenController
@@ -51,13 +53,9 @@ public class GetTokenController
         sso.setRefreshToken(refreshToken);
 
         CharacterApi characterApi = new CharacterApi();
-        characterApi.getApiClient().setAccessToken(sso.getAccessToken());
         SSOVerifyAnswer ssoVerifyAnswer = sso.getSSOVerifyAnswer();
         GetCharactersCharacterIdOk characterInfo =
-                characterApi.getCharactersCharacterId(
-                    ssoVerifyAnswer.getCharacterID(),
-                    "", "", ""
-                );
+                characterApi.getCharactersCharacterId(ssoVerifyAnswer.getCharacterID(),"tranquility", "", "");
         ServerResponse response = new ServerResponse();
         response.getBody().put("CharacterID", characterInfo.getName());
         response.getBody().put("Bloodline", GameConstants.BLOODLINES.get(characterInfo.getBloodlineId()));
@@ -66,18 +64,40 @@ public class GetTokenController
         int corporationId =  characterInfo.getCorporationId();
         int allianceId = characterInfo.getAllianceId();
 
+        List<GetCharactersCharacterIdCorporationhistory200Ok> corpHistory =
+                characterApi.getCharactersCharacterIdCorporationhistory(
+                        ssoVerifyAnswer.getCharacterID(),"tranquility", "", ""
+                );
+
+        ArrayList<Long> corpList = new ArrayList<>();
+        for (GetCharactersCharacterIdCorporationhistory200Ok corp : corpHistory)
+        {
+            corpList.add(corp.getCorporationId().longValue());
+        }
+        corpList.add(((Integer) corporationId).longValue());
+
         CorporationApi corporationApi = new CorporationApi();
-        corporationApi.getApiClient().setAccessToken(sso.getAccessToken());
-        GetCorporationsCorporationIdOk corporationInfo = corporationApi.getCorporationsCorporationId(corporationId, "", "", "");
+        List<GetCorporationsNames200Ok> corporationInfo =
+                corporationApi.getCorporationsNames(corpList, "tranquility", "", "");
+
+        HashMap<Integer, String> corpIdList = new HashMap<>();
+        for (GetCorporationsNames200Ok corp : corporationInfo)
+        {
+            corpIdList.put(corp.getCorporationId(), corp.getCorporationName());
+        }
 
         AllianceApi allianceApi = new AllianceApi();
-        allianceApi.getApiClient().setAccessToken(sso.getAccessToken());
-        GetAlliancesAllianceIdOk allianceInfo = allianceApi.getAlliancesAllianceId(allianceId, "", "", "");
+        GetAlliancesAllianceIdOk allianceInfo =
+                allianceApi.getAlliancesAllianceId(allianceId, "tranquility", "", "");
 
-        response.getBody().put("CorporationName", corporationInfo.getCorporationName());
+
+        response.getBody().put("Corporations", corpIdList);
+        response.getBody().put("History", corpHistory);
         response.getBody().put("AllianceName", allianceInfo.getAllianceName());
-
         response.getBody().put("CharacterID", Integer.toString(ssoVerifyAnswer.getCharacterID()));
+        response.getBody().put("CorporationID", Integer.toString(corporationId));
+        response.getBody().put("AllianceID", Integer.toString(allianceId));
+        response.getBody().put("CharacterName", ssoVerifyAnswer.getCharacterName());
         database.closeConnection();
         return response;
     }

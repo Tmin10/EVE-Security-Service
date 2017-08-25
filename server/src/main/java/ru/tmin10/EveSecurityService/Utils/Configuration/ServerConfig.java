@@ -21,7 +21,6 @@ public class ServerConfig
         this.dbPassword = dbPassword;
         this.dbSchema = dbSchema;
         this.client_secret = client_secret;
-
     }
 
     @NotNull
