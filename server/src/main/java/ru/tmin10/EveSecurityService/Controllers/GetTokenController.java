@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tmin10.EVESecurityService.serverApi.api.AllianceApi;
 import ru.tmin10.EVESecurityService.serverApi.api.CharacterApi;
-import ru.tmin10.EVESecurityService.serverApi.api.CorporationApi;
 import ru.tmin10.EVESecurityService.serverApi.model.*;
 import ru.tmin10.EveSecurityService.Classes.SSOVerifyAnswer;
 import ru.tmin10.EveSecurityService.Classes.ServerResponse;
@@ -15,18 +13,20 @@ import ru.tmin10.EveSecurityService.Utils.Configuration.Config;
 import ru.tmin10.EveSecurityService.Utils.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class GetTokenController
 {
     private final Config config;
+    private final GamePublicData gamePublicData;
 
     @Autowired
-    public GetTokenController(Config config)
+    public GetTokenController(Config config, GamePublicData gamePublicData)
     {
         this.config = config;
+        this.gamePublicData = gamePublicData;
     }
 
     @CrossOrigin //TODO for development run only
@@ -76,24 +76,11 @@ public class GetTokenController
         }
         corpList.add(((Integer) corporationId).longValue());
 
-        CorporationApi corporationApi = new CorporationApi();
-        List<GetCorporationsNames200Ok> corporationInfo =
-                corporationApi.getCorporationsNames(corpList, "tranquility", "", "");
-
-        HashMap<Integer, String> corpIdList = new HashMap<>();
-        for (GetCorporationsNames200Ok corp : corporationInfo)
-        {
-            corpIdList.put(corp.getCorporationId(), corp.getCorporationName());
-        }
-
-        AllianceApi allianceApi = new AllianceApi();
-        GetAlliancesAllianceIdOk allianceInfo =
-                allianceApi.getAlliancesAllianceId(allianceId, "tranquility", "", "");
-
+        Map<Long, String> corpIdList = gamePublicData.getCorporationNames(corpList);
 
         response.getBody().put("Corporations", corpIdList);
         response.getBody().put("History", corpHistory);
-        response.getBody().put("AllianceName", allianceInfo.getAllianceName());
+        response.getBody().put("AllianceName",gamePublicData.getAllianceName((long) allianceId));
         response.getBody().put("CharacterID", Integer.toString(ssoVerifyAnswer.getCharacterID()));
         response.getBody().put("CorporationID", Integer.toString(corporationId));
         response.getBody().put("AllianceID", Integer.toString(allianceId));
