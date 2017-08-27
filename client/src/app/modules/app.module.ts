@@ -9,8 +9,11 @@ import { AppComponent } from '../components/app.component';
 import { IndexComponent } from '../components/index.component';
 import { SsoComponent } from '../components/sso.component';
 import { ExitComponent } from '../components/exit.component';
+import { ErrorComponent } from '../components/error.component'
+
 import { ApiService } from '../services/api.service';
 import { ConfigService } from '../services/config.service';
+import { SharingService } from '../services/sharing.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,7 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     IndexComponent,
     SsoComponent,
-    ExitComponent
+    ExitComponent,
+    ErrorComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -30,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [ 
     ApiService,
-    ConfigService
+    ConfigService,
+    SharingService
   ],
   bootstrap: [ AppComponent ]
 })

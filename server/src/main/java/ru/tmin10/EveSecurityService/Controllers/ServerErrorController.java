@@ -56,6 +56,7 @@ public class ServerErrorController implements ErrorController
             this.error = (String) errorAttributes.get("error");
             this.message = (String) errorAttributes.get("message");
             this.timeStamp = errorAttributes.get("timestamp").toString();
+            //TODO turn off trace displaying
             this.trace = (String) errorAttributes.get("trace");
         }
 

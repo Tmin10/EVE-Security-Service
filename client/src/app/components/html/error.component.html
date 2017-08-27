@@ -1,0 +1,11 @@
+<div *ngIf="error" class="text-center">
+    <h3>
+        Error {{error.status}} 
+        <span *ngIf="errorBody">{{errorBody.error}}</span>
+    </h3>
+    <div *ngIf="errorBody">
+        <h6>{{errorBody.message}}</h6>
+        <p>{{errorBody.timeStamp}}</p>
+        <pre class="text-left pt-3" style="font-size: 70%">{{errorBody.trace}}</pre>
+    </div>
+</div>
