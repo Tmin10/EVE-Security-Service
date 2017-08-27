@@ -9,8 +9,8 @@ import { SharingService } from '../services/sharing.service';
     templateUrl: './html/error.component.html'
 })
 export class ErrorComponent implements OnInit {
-    private error;
-    private errorBody;
+    error;
+    errorBody;
 
     constructor (
         private sharing: SharingService,
@@ -19,7 +19,6 @@ export class ErrorComponent implements OnInit {
 
     ngOnInit() {
         this.error = this.sharing.get('error');
-        console.log(this.error);
         if (this.error) {
             this.errorBody = JSON.parse(this.error._body);
             this.sharing.set('error', undefined);
