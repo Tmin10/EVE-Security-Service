@@ -1,0 +1,25 @@
+<div *ngIf="character">
+    <table class="table table-bordered">
+        <tr>
+          <td class="text-center">
+            <img src="https://imageserver.eveonline.com/Character/{{character.CharacterID}}_128.jpg" /><br />
+            <h4>{{character.CharacterName}}</h4>
+            <h6>{{character.Race}} ({{character.Bloodline}})</h6>
+            <p>
+              <img src="https://imageserver.eveonline.com/Corporation/{{character.CorporationID}}_32.png" />
+              {{character.Corporations[character.CorporationID]}}
+            </p>
+            <p>
+              <img src="https://imageserver.eveonline.com/Corporation/{{character.AllianceID}}_32.png" />
+              {{character.AllianceName}}
+            </p>
+          </td>
+        </tr>
+        <tr *ngFor="let corp of character.History">
+          <td class="text-center">
+              <img src="https://imageserver.eveonline.com/Corporation/{{corp.corporationId}}_32.png" />
+              {{character.Corporations[corp.corporationId]}}
+          </td>
+        </tr>
+    </table>
+</div>

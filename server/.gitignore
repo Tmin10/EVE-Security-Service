@@ -17,6 +17,8 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+target
+src/main/resources
 
 
 # System Files

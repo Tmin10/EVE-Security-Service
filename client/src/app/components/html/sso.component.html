@@ -1,0 +1,10 @@
+<div class="text-center pt-5">
+    <div *ngIf="error" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hmm...</strong> {{error}}
+    </div>
+    <a
+        href="https://login.eveonline.com/oauth/authorize?response_type=code&redirect_uri={{config.redirect_uri}}&client_id={{config.client_id}}&scope={{config.scope}}&state={{state}}"
+        *ngIf="showButton && config"
+    >
+    <img src="https://images.contentful.com/idjq7aai9ylm/4PTzeiAshqiM8osU2giO0Y/5cc4cb60bac52422da2e45db87b6819c/EVE_SSO_Login_Buttons_Large_White.png?w=270&h=45"/></a>
+</div>
