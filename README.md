@@ -6,7 +6,8 @@ Second prototype
 
 This application is support SSO auth process and can display character information.
 
-##Configuration
+## Configuration
+
 For correct work application need `config.json` file in the same directory as the `server.jar`.
 ```javascript
 {
@@ -26,7 +27,8 @@ For correct work application need `config.json` file in the same directory as th
 }
 ```
 
-##Application start
+## Application start
+
 ```
 java -jar server.jar
 ```
