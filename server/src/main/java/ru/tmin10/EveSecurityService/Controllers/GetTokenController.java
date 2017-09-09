@@ -37,6 +37,10 @@ public class GetTokenController
         sso.setCode(code);
         ServerResponse response = new ServerResponse();
         DB database = new DB(config.getServerConfig().getJDBCConnectionString());
+        if (sso.getRefreshToken() == null)
+        {
+            throw new Exception("No refresh token.");
+        }
         String clientToken = database.getClientToken(sso.getRefreshToken());
         response.getBody().put("token", clientToken);
         database.closeConnection();
@@ -62,7 +66,7 @@ public class GetTokenController
         response.getBody().put("Race", GameConstants.RACES.get(characterInfo.getRaceId()));
 
         int corporationId =  characterInfo.getCorporationId();
-        int allianceId = characterInfo.getAllianceId();
+        Integer allianceId = characterInfo.getAllianceId();
 
         List<GetCharactersCharacterIdCorporationhistory200Ok> corpHistory =
                 characterApi.getCharactersCharacterIdCorporationhistory(
@@ -80,10 +84,13 @@ public class GetTokenController
 
         response.getBody().put("Corporations", corpIdList);
         response.getBody().put("History", corpHistory);
-        response.getBody().put("AllianceName",gamePublicData.getAllianceName((long) allianceId));
+        if (allianceId != null)
+        {
+            response.getBody().put("AllianceName", gamePublicData.getAllianceName(allianceId.longValue()));
+            response.getBody().put("AllianceID", allianceId.toString());
+        }
         response.getBody().put("CharacterID", Integer.toString(ssoVerifyAnswer.getCharacterID()));
         response.getBody().put("CorporationID", Integer.toString(corporationId));
-        response.getBody().put("AllianceID", Integer.toString(allianceId));
         response.getBody().put("CharacterName", ssoVerifyAnswer.getCharacterName());
         database.closeConnection();
         return response;

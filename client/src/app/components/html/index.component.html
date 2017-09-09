@@ -9,7 +9,7 @@
               <img src="https://imageserver.eveonline.com/Corporation/{{character.CorporationID}}_32.png" />
               {{character.Corporations[character.CorporationID]}}
             </p>
-            <p>
+            <p *ngIf="character.AllianceID">
               <img src="https://imageserver.eveonline.com/Corporation/{{character.AllianceID}}_32.png" />
               {{character.AllianceName}}
             </p>
