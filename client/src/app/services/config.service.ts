@@ -1,4 +1,4 @@
-import { OnInit, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Router } from '@angular/router';
 
@@ -20,8 +20,12 @@ export class ConfigService {
         private http: Http,
         private router: Router,
         private sharing: SharingService
-    ) { }
-
+    ) {
+        // TODO for development
+        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+            this.BASE = 'http://localhost:8080';
+        }
+     }
 
     get(): Promise<Config> {
         return this.http.get(this.configUrl)
