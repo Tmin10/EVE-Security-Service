@@ -14,7 +14,7 @@ export class SsoComponent implements OnInit {
   state = '';
   error;
   showButton = false;
-  config:Config;
+  config: Config;
 
   constructor (
     private activatedRoute: ActivatedRoute,
@@ -28,7 +28,7 @@ export class SsoComponent implements OnInit {
     if (localStorage.getItem('state')) {
       this.state = localStorage.getItem('state');
       this.activatedRoute.queryParams.subscribe((params: Params) => {
-        if (params['state'] == this.state) {
+        if (params['state'] === this.state) {
           this.code = params['code'];
           this.apiService.getToken(this.code).then(
             token => {
@@ -36,8 +36,7 @@ export class SsoComponent implements OnInit {
               this.router.navigateByUrl('/');
             }
           );
-        }
-        else {
+        } else {
           if (params['state']) {
             this.error = 'Something wrong with query state code. Try again.';
           }

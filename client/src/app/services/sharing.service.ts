@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
 export class SharingService {
     private storage = [];
 
-    set (key:string, data:any) {
+    set (key: string, data: any) {
         this.storage[key] = data;
     }
 
-    get (key:string):any {
+    get (key: string): any {
         return this.storage[key];
     }
 }

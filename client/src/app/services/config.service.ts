@@ -14,7 +14,7 @@ export class ConfigService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
     private BASE = '';
-    private configUrl:string = this.BASE + '/config';
+    private configUrl: string = this.BASE + '/config';
 
     constructor(
         private http: Http,

@@ -5,7 +5,7 @@ import { SharingService } from '../services/sharing.service';
 
 
 @Component({
-    selector: 'error-component',
+    selector: 'app-error',
     templateUrl: './html/error.component.html'
 })
 export class ErrorComponent implements OnInit {

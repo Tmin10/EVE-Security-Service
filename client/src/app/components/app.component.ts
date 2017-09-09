@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   templateUrl: './html/app.component.html',
 })
 export class AppComponent {
-    title = 'EVE Security Service v.0.2.0';
+    title = 'EVE Security Service v.0.3.0';
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../services/api.service';
@@ -9,8 +9,8 @@ import { ApiService } from '../services/api.service';
   templateUrl: './html/index.component.html',
   styleUrls: ['./css/index.component.css']
 })
-export class IndexComponent {
-  title = 'EVE Security Service v.0.2.0';
+export class IndexComponent implements OnInit {
+  title = 'EVE Security Service v.0.3.0';
   character = '';
 
   constructor (
@@ -21,8 +21,7 @@ export class IndexComponent {
   ngOnInit() {
     if (!localStorage.getItem('token')) {
       this.router.navigateByUrl('/sso');
-    }
-    else {
+    } else {
       this.apiService.getCharacterInfo().then(character => this.character = character);
     }
   }

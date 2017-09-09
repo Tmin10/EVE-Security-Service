@@ -2,7 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'exit-component',
+    selector: 'app-exit',
     template: ''
 })
 export class ExitComponent implements OnInit {
@@ -13,5 +13,4 @@ export class ExitComponent implements OnInit {
         localStorage.clear();
         this.router.navigateByUrl('/');
     }
-
 }
