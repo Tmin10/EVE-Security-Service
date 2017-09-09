@@ -18,7 +18,8 @@ test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
 target
-src/main/resources
+src/main/resources/*
+!src/main/resources/application.properties
 
 
 # System Files
